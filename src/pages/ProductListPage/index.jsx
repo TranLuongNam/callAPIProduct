@@ -4,7 +4,7 @@ import ProductList from '../../components/ProductList/ProductList';
 import { connect } from 'react-redux';
 import callApi from '../../utils/apiCaller';
 import { Link } from 'react-router-dom';
-import { actDeleteProductrRequest, actFetchProductsRequest } from '../../action';
+import { actDeleteProductrRequest, actFetchProductsRequest, actDeleteAllProductRequest } from '../../action';
 import '../../App.css';
 
 class ProductListPage extends PureComponent {
@@ -18,17 +18,20 @@ class ProductListPage extends PureComponent {
     console.log(id);
     this.props.onDeleteProduct(id);
   };
+  onDeleteAllProduct = (product) => {
+    this.props.onDeleteAllProduct(product)
+  }
   render() {
-    const {products} = this.props;
+    const { products } = this.props;
     return (
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<Link to="/product/add" className="btn btn-info mb-10">
-					Thêm Sản Phẩm
+        <Link to="/product/add" className="btn btn-info mb-10">
+          Thêm Sản Phẩm
 				</Link>
-        <button className="btn btn-danger btn-custom">Xóa Tất Cả</button>
-				<ProductList>{this.showProducts(products)}</ProductList>
-			</div>
-      );
+        <button className="btn btn-danger btn-custom" onClick={this.onDeleteAllProduct}>Xóa Tất Cả</button>
+        <ProductList>{this.showProducts(products)}</ProductList>
+      </div>
+    );
   }
   showProducts(products) {
     let result = null;
@@ -53,6 +56,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     onDeleteProduct: (id) => {
       dispatch(actDeleteProductrRequest(id));
+    },
+    onDeleteAllProduct: (product) => {
+      dispatch(actDeleteAllProductRequest(product))
     }
   }
 }

@@ -28,7 +28,7 @@ const products = (state = initialState, action) => {
         case UPDATE_PRODUCT:
             index = findIndex(state, product.id)
             state[index] = product;
-            return [...state]
+            return [...state];
         default:
             return [...state];
     }
