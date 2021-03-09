@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mb-10{
+  margin-bottom: 10px;
+}
+.mr-10{
+  margin-right: 10px;
+}
+.btn-custom{
+  padding: 7px;
+  float: right;
+}
